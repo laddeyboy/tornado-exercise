@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/responsive_layout_ex.css" type="text/css" />
+        <title>Welcome to jladdy.org</title>
+    </head>
+    <body>
+        <!--navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light section-border">
+          <a class="navbar-brand" href="#">Our Company</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">  <!-- why doesn't justify-content-end work here??? -->
+              <li class="nav-item active">
+                <a class="nav-link link-separater" href="#">Home<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-separater" href="#">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-separater" href="#">Company</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        
+        
+        <h1>This is my testing site for Tornado and Jinja...</h1>
+        
+        
+        {% block content %}
+        {% endblock %}
+    
+    
+        <div>
+            <footer>
+                Copyright 2018 by Josh Ladwig because I did this thing!
+            </footer>        
+        </div>
+    </body>
+    
+</html>

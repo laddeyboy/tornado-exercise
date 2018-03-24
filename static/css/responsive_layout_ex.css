@@ -1,0 +1,35 @@
+.content-header {
+    font-weight: bold;
+}
+
+
+/*.link-separater {*/
+/*    border-right: 2px solid black;*/
+/*}*/
+
+.section-border {
+    border-bottom: 3px solid gray;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.content-title {
+    padding-bottom: 25px;
+}
+
+figure {
+    text-align: center;
+}
+
+div a::after {
+    padding-left: 8px;
+    content: "|";
+}
+
+div li:last-child a::after {
+    content: '';
+}
+
+img {
+    width: 300px;
+}
