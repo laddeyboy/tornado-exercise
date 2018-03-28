@@ -13,3 +13,4 @@ name = "pypi"
 
 tornado = "*"
 "jinja2" = "*"
+"boto3" = "*"
