@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="/form" method="get">
-      <!-- inputs here -->
-      <label for="">First Name</label>
-      <input type="text" name="first_name">
-      <br><br>
-      <label for="">Last Name</label>
-      <input type="text" name="last_name">
-      <br><br>
-      <button type="submit">Submit Form</button>
-    </form>
     
-    <form>
-        Search: <input type="text" name="query"/>
-        <button type="submit">Submit Form</button>
-
-    </form>
+    
+    <div class='container'>
+        <form id="formData" action="/form" method="post">
+            <h3>Here is a simple form to contact me!</h3>
+            {% if error %}
+                <p>You did not enter a first name!</p>
+            {% endif %}
+            <label>First Name:</label>
+                <input type="text" name="first_name"/><br>
+            <label>Last Name:</label>
+                <input type="text" name="last_name"/><br>
+            <label>Email:</label>
+                <input type="email" name="user_email"/><br>
+            <label>Message: </label>
+                <input type="text" name="message"><br>
+            <p style="text-align:center">When you submit this form, I will get an email and get back to you!</p>
+            <button type="submit" class="submitbutton">Submit Form</button>
+        </form>
+    </div>
 
 {% endblock %}

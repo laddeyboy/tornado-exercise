@@ -1,35 +1,29 @@
-.content-header {
-    font-weight: bold;
+
+#formData {
+    width: 500px;
+    padding: 10px 0 0 20px;
+    border: 3px solid #808080;
+}
+
+#contentBlock {
+    padding-top: 50px;
+}
+
+#topContent {
+    margin-top: 75px;
+}
+
+.submitbutton {
+    margin: 10px;
 }
 
 
-/*.link-separater {*/
-/*    border-right: 2px solid black;*/
-/*}*/
 
-.section-border {
-    border-bottom: 3px solid gray;
-    padding-top: 40px;
-    padding-bottom: 40px;
+label {
+    width: 100px;
 }
 
-.content-title {
-    padding-bottom: 25px;
+footer {
+    padding-top: 50px;
 }
 
-figure {
-    text-align: center;
-}
-
-div a::after {
-    padding-left: 8px;
-    content: "|";
-}
-
-div li:last-child a::after {
-    content: '';
-}
-
-img {
-    width: 300px;
-}

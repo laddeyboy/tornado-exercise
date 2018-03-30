@@ -7,18 +7,18 @@
     </head>
     <body>
         <!--navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light section-border">
-          <a class="navbar-brand" href="#">Our Company</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary section-border">
+          <a class="navbar-brand" href="#">Digital Crafts Flex Class 2018</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">  <!-- why doesn't justify-content-end work here??? -->
               <li class="nav-item active">
-                <a class="nav-link link-separater" href="#">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link link-separater" href="/">Home<span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link link-separater" href="#">Products</a>
+                <a class="nav-link link-separater" href="form">My 1st Form</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link link-separater" href="#">Company</a>
@@ -30,17 +30,21 @@
           </div>
         </nav>
         
+        <div id="topContent" class="container-fluid">
+          <h6>My name is Josh and I'm a cohort in the 2018 DC Flex Spring class in Houston, TX.</h6>
+          <p>Here are a number of examples of my work with the Tornado, Jinja, and Boto3 libraries.</p>
+        </div>
         
-        <h1>This is my testing site for Tornado and Jinja...</h1>
+        <div id="contentBlock" class="container">
+          {% block content %}
+          {% endblock %}  
+        </div>
         
-        
-        {% block content %}
-        {% endblock %}
     
     
-        <div>
+        <div class="container">
             <footer>
-                Copyright 2018 by Josh Ladwig because I did this thing!
+                Copyright 2018 by jladdy because I did this thing!
             </footer>        
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -3,6 +3,14 @@ import tornado.web
 import tornado.log
 
 import os
+import boto3
+
+client = boto3.client(
+  'ses',
+  region_name='us-east-1',
+  aws_access_key_id=os.environ.get('AWS_ACCESS_KEY'),
+  aws_secret_access_key=os.environ.get('AWS_SECRET_KEY')
+)
 
 from jinja2 import \
   Environment, PackageLoader, select_autoescape
@@ -20,19 +28,60 @@ class TemplateHandler(tornado.web.RequestHandler):
 class MainHandler(TemplateHandler):
     def get(self):
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-        name = self.get_query_argument('name', 'Page1')
+        name = self.get_query_argument('name', 'Vistor')
         self.render_template("hello.html", {'name': name})
-        
-class NextHandler(TemplateHandler):
+
+
+def send_email(name, email, comments):
+    response = client.send_email(
+      Destination={
+        'ToAddresses': ['joshua.j.ladwig@gmail.com'],
+      },
+      Message={
+        'Body': {
+          'Text': {
+            'Charset': 'UTF-8',
+            'Data': '{} from {} would like to say: {}.'.format(name, email, comments),
+          },
+        },
+        'Subject': {'Charset': 'UTF-8', 'Data': 'Test email'},
+      },
+      Source='joshua.j.ladwig@gmail.com',
+    )
+
+
+class FormHandler(TemplateHandler):
     def get(self):
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
         name = self.get_query_argument('name', 'Page2')
-        self.render_template("hello2.html", {'name': name})
+        self.render_template("form.html", {'name': name})
+        
+    def post(self):
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        first_name = self.get_body_argument('first_name', None)
+        user_email = self.get_body_argument('user_email', None)
+        user_message = self.get_body_argument('message', None)
+        error = ''
+        # form args = {first_name, last_name, user_email, message}
+        if first_name:
+            send_email(first_name, user_email, user_message)
+            self.redirect('/form_submitted', {})
+        else:
+            if(not first_name):
+                error = 'You need to enter your name!'
+                self.render_template("form.html", {'error':error})
+
+class FormSuccessHandler(TemplateHandler):
+    def get(self):
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        name = self.get_query_argument('name', 'Page2')
+        self.render_template("form_submitted.html", {})
 
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
-        (r"/hello2", NextHandler),
+        (r"/form", FormHandler),
+        (r"/form_submitted", FormSuccessHandler),
         (
           r"/static/(.*)",
           tornado.web.StaticFileHandler,
