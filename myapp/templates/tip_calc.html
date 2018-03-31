@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1> Welcome to Chez Ladwig!</h1>
+<p> Let me help you figure out the tip...</p>
+
+
+<div class='container'>
+        <form id="tipCalcForm" action="/tip_calc" method="post">
+            {% if error %}
+                <h5 style="color: red">YOU NEED TO PROVIDE YOUR BILL TOTAL!!</h5>
+            {% endif %}
+            <label>What was your bill total?</label>
+                <input type="number" step="0.01" name="bill_total"/><br>
+            <label>How was your service?</label>
+                <select name="service">
+                    <option value="good_service">Good</option>
+                    <option value="fair_service">Fair</option>
+                    <option value="bad_service">Bad</option>
+                </select>
+            <br>
+            
+            {% if total_w_tip %}
+            <h5 style="color: blue">You should pay ${{ "{0:.2f}".format(total_w_tip) }} including tip.</h5>
+            {% endif %}
+            <button type="submit" class="submitbutton">Calculate</button>
+        </form>
+    </div>
+
+{% endblock %}

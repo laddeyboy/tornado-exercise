@@ -71,6 +71,37 @@ class FormHandler(TemplateHandler):
                 error = 'You need to enter your name!'
                 self.render_template("form.html", {'error':error})
 
+
+class TipCalcHandler(TemplateHandler):
+    def get(self):
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        name = self.get_query_argument('name', 'Page2')
+        self.render_template("tip_calc.html", {'name': name})
+        
+    def post(self):
+        self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        bill_total = self.get_body_argument('bill_total', None)
+        service = self.get_body_argument('service', None)
+        user_message = self.get_body_argument('message', None)
+        total_w_tip = 0;
+        error = ''
+        # tipCalcForm args = {bill_total, good_service, fair_service, bad_service, message}
+        if(bill_total == ''):
+            error = 'You did not provide your bill total'
+            self.render_template("tip_calc.html", {'error': error})
+        else:
+            if(service == 'good_service'):
+                total_w_tip = round(float(bill_total) * 1.2, 2)
+            elif(service == 'fair_service'):
+                total_w_tip = round(float(bill_total) * 1.15, 2)
+            elif(service == 'bad_service'):
+                total_w_tip = round(float(bill_total) * 1.10, 2)
+            self.render_template("tip_calc.html", {'total_w_tip': total_w_tip})
+        # else:
+        #     self.render_template("tip_calc.html", {})
+       
+
+
 class FormSuccessHandler(TemplateHandler):
     def get(self):
         self.set_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
@@ -82,6 +113,7 @@ def make_app():
         (r"/", MainHandler),
         (r"/form", FormHandler),
         (r"/form_submitted", FormSuccessHandler),
+        (r"/tip_calc", TipCalcHandler),
         (
           r"/static/(.*)",
           tornado.web.StaticFileHandler,

@@ -13,6 +13,16 @@
     margin-top: 75px;
 }
 
+#tipCalcForm {
+    width: 500px;
+    padding: 10px 0 0 20px;
+    border: 3px solid #808080;
+}
+
+#tipCalcForm label {
+    width: 200px;
+}
+
 .submitbutton {
     margin: 10px;
 }
