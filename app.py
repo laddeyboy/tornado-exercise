@@ -13,8 +13,8 @@ client = boto3.client(
 )
 
 from jinja2 import \
-  Environment, PackageLoader, select_autoescape
-
+    Environment, PackageLoader, select_autoescape
+  
 ENV = Environment(
     loader=PackageLoader('myapp', 'templates'),
     autoescape=select_autoescape(['html', 'xml'])
